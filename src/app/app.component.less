@@ -6,7 +6,7 @@ div.copy:not(.inner):not(.ou){
     margin: 0px;
 }
 div.copy,a.copy{
-    background-color: #555555;
+    background-color: #555555!important;
     color: #fff;
     text-align: center;
 }
@@ -17,17 +17,21 @@ a.copy,div.inner.copy{
 h1,h2,div:not(.copy){
     margin:4px;
 }
-div.elements{
+div.elements:not(.gig){
     border-color: #aedd04;
 }
-div.elements,div:not(.elements):not(.copy){
+div.elements,div:not(.elements):not(.copy):not(.gig){
     border-width: 4px;
     border-style: dotted;
 }
-div:not(.elements):not(.copy){
+div:not(.elements):not(.copy):not(.gig){
     border-color: #08ff46;
+    background-color: #474646!important;
 }
 div.copy.ou{
     height:46%;
     width:100%;
+}
+div.copy,a.copy,h1,h2,lis{
+    text-align: center;
 }
