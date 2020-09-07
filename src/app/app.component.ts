@@ -26,8 +26,9 @@ export class AppComponent implements OnInit {
     new Observable((sub)=>{
       sub.next(true);
       setInterval(()=>{
+        console.log("Look for Updates");
         sub.next(true);
-      }, (1000*60)*3);
+      }, (1000*60));
     }).subscribe((x)=>{
       this.http.get<fe>("assets/reposlist.json").subscribe(list=>{
         if(list.version > this.versiong){
