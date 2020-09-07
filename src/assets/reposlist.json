@@ -1,0 +1,6 @@
+{
+    "version": 1,
+    "repos":[
+        {"name": "reposlist", "desc": "List of some Repositorys", "link": "#"}
+    ]
+}
