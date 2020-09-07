@@ -11,6 +11,17 @@ import { Observable } from 'rxjs';
 export class AppComponent implements OnInit {
   title:string = 'repoList';
   versiong:number = 0;
+  party:string="";
+  xb:boolean=false;
+  shl:string="Show";
+  toggler(){
+    this.xb=!this.xb;
+    if(!this.xb){
+      this.shl="Show";
+    }else{
+      this.shl="Hide";
+    }
+  }
   elemLi=[{"name": "Loading", "link": "#load", "desc": "Loading additional Data"}];
   constructor(private http:HttpClient){}
   ngOnInit(): void {
@@ -23,6 +34,19 @@ export class AppComponent implements OnInit {
       public repos:element[];
       public version:number;
     };
+    try{
+      const lst:string=localStorage.getItem("3rdPart");
+      if(lst!=null&&lst!=""){
+        this.party=lst;
+      }else{
+        this.http.get("3rdpartylicenses.txt", {responseType: 'text'}).subscribe(list=>{
+          this.party=list;
+          localStorage.setItem("3rdPart", list);
+        });
+      }
+    }catch(e){
+      console.warn(e);
+    }
     new Observable((sub)=>{
       sub.next(true);
       setInterval(()=>{
@@ -30,11 +54,15 @@ export class AppComponent implements OnInit {
         sub.next(true);
       }, (1000*60));
     }).subscribe((x)=>{
-      this.http.get<fe>("assets/reposlist.json").subscribe(list=>{
-        if(list.version > this.versiong){
-          this.elemLi=list.repos;
-        }
-      });
+      try{
+        this.http.get<fe>("assets/reposlist.json").subscribe(list=>{
+          if(list.version > this.versiong){
+            this.elemLi=list.repos;
+          }
+        });
+      }catch(e){
+        console.warn(e);
+      }
     });
   }
 }
