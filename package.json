@@ -1,6 +1,7 @@
 {
   "name": "repo-list",
   "version": "0.0.0",
+  "author": "Sharkbyteprojects",
   "scripts": {
     "ng": "ng",
     "start": "ng serve",
